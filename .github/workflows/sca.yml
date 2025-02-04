@@ -4,16 +4,19 @@ run-name: SCA_
 on:
   push:
     branches:
-      - master  # O usa 'master' si esa es la rama principal en tu repo
+      - master  # O usa 'main' si esa es la rama principal en tu repo
 
 jobs:
   run:
-    runs-on: self-hosted  # Usamos una máquina virtual Ubuntu
+    runs-on: self-hosted  # Usamos un runner autohospedado
     steps:
     - name: Check out repository
       uses: actions/checkout@v3  # Esto asegura que el código del repositorio esté disponible en el runner
 
-    - name: Imprimir Hola Mundo
-      run: snyk test --severity-threshold=high || true # Este comando imprimirá "Hola Mundo" en la consola
+    - name: Instalar dependencias con NPM
+      run: npm install  # Instala las dependencias definidas en package.json
+
+    - name: Ejecutar análisis de Snyk
+      run: snyk test --severity-threshold=high || true  # Ejecuta Snyk con el umbral de severidad configurado
       env:
-        SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}  # Usa el token de Snyk almacenado en secretos
