@@ -13,4 +13,4 @@ jobs:
       uses: actions/checkout@v3  # Esto asegura que el código del repositorio esté disponible en el runner
 
     - name: Imprimir Hola Mundo
-      run: echo "Hola Mundo"  # Este comando imprimirá "Hola Mundo" en la consola
+      run: snyk code test .  # Este comando imprimirá "Hola Mundo" en la consola
