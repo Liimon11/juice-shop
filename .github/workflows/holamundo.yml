@@ -15,4 +15,4 @@ jobs:
     - name: Imprimir Hola Mundo
       run: snyk code test .  # Este comando imprimirá "Hola Mundo" en la consola
       env:
-        SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}.
+        SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
